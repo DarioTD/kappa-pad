@@ -18,19 +18,17 @@ void setup() {
 
 CapacitiveKey key0 = CapacitiveKey(
   2,    //Capacitive Send Pin
-  7,    //Capacitive Sense Pin
+  4,    //Capacitive Sense Pin
   6,    //LED Pin
-  6,    //Capacitive Treshold
-  'z',  //Keyboard Key
-  255   //LED Brightness (0-255)
+  15,    //Capacitive Treshold
+  'x'  //Keyboard Key
 );
 CapacitiveKey key1 = CapacitiveKey(
-  4,    //Capacitive Send Pin
+  3,    //Capacitive Send Pin
   8,    //Capacitive Sense Pin
   10,   //LED Pin
-  5,    //Capacitive Treshold
-  'x',  //Keyboard Key
-  255   //LED Brightness (0-255)
+  16,    //Capacitive Treshold
+  'z'  //Keyboard Key
 );
 
 void loop() {
@@ -43,6 +41,6 @@ void loop() {
   Serial.print(",");
   Serial.println(key1.sample);
   #endif
+
+// delay(1);
 }
-
-

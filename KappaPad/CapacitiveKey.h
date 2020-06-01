@@ -3,13 +3,12 @@ class CapacitiveKey {
     CapacitiveSensor* sensor;
     bool keyReleased = true;
     char key;
-    unsigned int releaseDelay = 20;
-    unsigned int releaseTimer;
+    unsigned int releaseDelay = 50;
+    unsigned long releaseTimer;
     unsigned int treshold;  
     int led;
     unsigned int sample;
-    unsigned char ledBrightness;
-    CapacitiveKey(uint8_t sendPin, uint8_t receivePin, int statusLED, unsigned int capacitiveTreshold, char keyboardKey, unsigned char ledBrightness)  {
+    CapacitiveKey(uint8_t sendPin, uint8_t receivePin, int statusLED, unsigned int capacitiveTreshold, char keyboardKey)  {
       sensor = new CapacitiveSensor(sendPin, receivePin);
       treshold = capacitiveTreshold;
       key = keyboardKey;
@@ -23,24 +22,21 @@ class CapacitiveKey {
       sample = sensor->capacitiveSensorRaw(1);
       if (sample > treshold) {
         if (keyReleased) {
-          analogWrite(led, 255);
+          analogWrite(led, 5);
           if (keyboardActive) Keyboard.press(key);
           keyReleased = false;
         }
-        releaseTimer = releaseDelay;
+        releaseTimer = millis();
       }
       else {
         if (!keyReleased) {
-          if (releaseTimer == 0) {
+          if (millis() - releaseTimer >= releaseDelay && releaseTimer != 0) {
             analogWrite(led, 0);
             Keyboard.release(key);
             keyReleased = true;
-          }
-          else {
-            releaseTimer--;
+            releaseTimer = 0;
           }
         }
       }
     }
 };
-
