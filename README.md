@@ -24,11 +24,10 @@ Components Used
 
 * 170 Point Breadboard
 * Clone of Arduino Pro Micro
-* 2x 100 Ohm Resistor
-* 1x 220 Ohm Resistor
-* 2x 330 kOhm Resistor
+* 2x 1 mOhm Resistor for plates
+* 2x 220 Ohm Resistor for LEDs
 * Solid-Core Wire
-* Common-Cathode RGB LED
+* 2 Common-Cathode LEDs
 
 All of the electronics were connected by a small breadboard. An [Arduino Pro Micro](https://www.sparkfun.com/products/12640)-compatible board was used as the microcontroller. Other boards that can act as a USB keyboard can be used, such as Arduino Leonardo, Arduino Zero, Arduino Due, and Teensy. The optional LED will light up red or green depending on which key was pressed. It was mounted pointing downwards in a hole in the acrylic base to provide illumination all around the edges.
 
