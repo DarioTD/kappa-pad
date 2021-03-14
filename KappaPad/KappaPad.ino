@@ -4,7 +4,7 @@
 #include "CapacitiveKey.h"
 
 //#define SERIAL_OUTPUT
-#define DISABLE_PIN 12
+#define DISABLE_PIN 13
 
 void setup() {
   #ifdef SERIAL_OUTPUT
@@ -15,20 +15,20 @@ void setup() {
 }
 
 CapacitiveKey key0 = CapacitiveKey(
-  7,    //Capacitive Send Pin
-  2,    //Capacitive Sense Pin
+  2,    //Capacitive Send Pin
+  7,    //Capacitive Sense Pin
   6,    //LED Pin
-  26,   //Capacitive Threshold
-  'd',  //Keyboard Key
-  0     //LED Brightness (0-255)
+  20,   //Capacitive Threshold
+  'z',  //Keyboard Key
+  5     //LED Brightness (0-255)
 );
 CapacitiveKey key1 = CapacitiveKey(
-  8,    //Capacitive Send Pin
-  13,   //Capacitive Sense Pin
-  11,   //LED Pin
-  26,   //Capacitive Threshold
-  'f',  //Keyboard Key
-  0     //LED Brightness (0-255)
+  4,    //Capacitive Send Pin
+  8,   //Capacitive Sense Pin
+  10,   //LED Pin
+  20,   //Capacitive Threshold
+  'x',  //Keyboard Key
+  5     //LED Brightness (0-255)
 );
 
 void loop() {
@@ -38,7 +38,9 @@ void loop() {
 
   #ifdef SERIAL_OUTPUT
   Serial.print(key0.sample);
-  Serial.print(",");
-  Serial.println(key1.sample);
+  Serial.print(", ");
+  Serial.print(key1.sample);
+  Serial.print(", ");
+  Serial.println(digitalRead(DISABLE_PIN));
   #endif
 }
