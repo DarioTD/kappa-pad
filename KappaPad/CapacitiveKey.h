@@ -7,20 +7,21 @@ class CapacitiveKey
     unsigned int releaseDelay = 50;
     unsigned long releaseTimer;
     unsigned int threshold;  
-    int led;
+    unsigned int led;
     unsigned int sample;
     unsigned int ledBrightness;
     CapacitiveKey(uint8_t sendPin,
                   uint8_t receivePin,
-                  int statusLED,
+                  unsigned int statusLED,
                   unsigned int capacitiveThreshold,
                   char keyboardKey,
-                  unsigned int ledBrightness)
+                  unsigned int ledIntensity)
     {
       sensor = new CapacitiveSensor(sendPin, receivePin);
       threshold = capacitiveThreshold;
       key = keyboardKey;
       led = statusLED;
+      ledBrightness = ledIntensity;
       pinMode(led, OUTPUT);
     }
     ~CapacitiveKey()
