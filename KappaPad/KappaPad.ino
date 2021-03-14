@@ -1,12 +1,10 @@
-
-
 #include <CapacitiveSensor.h>
 #include <Keyboard.h>
 
-#include "capacitiveKey.h"
+#include "CapacitiveKey.h"
 
 //#define SERIAL_OUTPUT
-#define DISABLE_PIN 15
+#define DISABLE_PIN 12
 
 void setup() {
   #ifdef SERIAL_OUTPUT
@@ -17,18 +15,20 @@ void setup() {
 }
 
 CapacitiveKey key0 = CapacitiveKey(
-  2,    //Capacitive Send Pin
-  4,    //Capacitive Sense Pin
+  7,    //Capacitive Send Pin
+  2,    //Capacitive Sense Pin
   6,    //LED Pin
-  15,    //Capacitive Treshold
-  'x'  //Keyboard Key
+  26,   //Capacitive Threshold
+  'd',  //Keyboard Key
+  0     //LED Brightness (0-255)
 );
 CapacitiveKey key1 = CapacitiveKey(
-  3,    //Capacitive Send Pin
-  8,    //Capacitive Sense Pin
-  10,   //LED Pin
-  16,    //Capacitive Treshold
-  'z'  //Keyboard Key
+  8,    //Capacitive Send Pin
+  13,   //Capacitive Sense Pin
+  11,   //LED Pin
+  26,   //Capacitive Threshold
+  'f',  //Keyboard Key
+  0     //LED Brightness (0-255)
 );
 
 void loop() {
@@ -41,6 +41,4 @@ void loop() {
   Serial.print(",");
   Serial.println(key1.sample);
   #endif
-
-// delay(1);
 }
