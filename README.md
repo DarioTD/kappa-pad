@@ -24,21 +24,23 @@ Components Used
 
 * 170 Point Breadboard
 * Clone of Arduino Pro Micro
-* 2x 1 mOhm Resistor for plates
-* 2x 220 Ohm Resistor for LEDs
+* 2x 300 kOhm Resistor for plates
 * Solid-Core Wire
 * 2 Common-Cathode LEDs
 
 All of the electronics were connected by a small breadboard. An [Arduino Pro Micro](https://www.sparkfun.com/products/12640)-compatible board was used as the microcontroller. Other boards that can act as a USB keyboard can be used, such as Arduino Leonardo, Arduino Zero, Arduino Due, and Teensy. The optional LED will light up red or green depending on which key was pressed. It was mounted pointing downwards in a hole in the acrylic base to provide illumination all around the edges.
 
-The keys were made out of sheet aluminum, with wires crimped to provide a secure electrical connection. Any metal objects can be used for the keys. The size and material of the objects will determine the treshold values when calibrating the keyboard.
+The keys were made out of sheet aluminum, with wires crimped to provide a secure electrical connection. Any metal objects can be used for the keys. The size and material of the objects will determine the threshold values when calibrating the keyboard.
 
 ### Software
 
 The Arduino Sketch is located in the KappaPad directory of this repository. It requires the [CapacitiveSensor library](https://github.com/PaulStoffregen/CapacitiveSensor) so install that first. 
 
-Make sure the correct pin numbers are given where the CapacitiveKey classes are initialized, and make sure the disable pin (15 by default) is accessible on your board.
+Make sure the correct pin numbers are given where the CapacitiveKey classes are initialized, and make sure the disable pin (13 by default) is accessible on your board.
 
 Upload the sketch to the board using the appropriate board type. (Use Arduino Leonardo if you have a Pro Micro.) After uploading, note that your board may recieve a different serial port number.
 
-At this point the keyboard may work, or the treshold values may have to be adjusted. If keys act like they are being held down and your computer is now unusable when the keypad is plugged in, connect a wire from the disable pin to ground to stop keypresses from being sent. If the keys do not work, uncomment the `#DEFINE SERIAL_OUTPUT` and reupload the sketch. Now, when you open the Arduino serial monitor (at 115200 baud) you should see the sensed capacitance for each key. Change the tresholds so that they are just above the largest values you see when not touching the keys, and reupload the sketch. Once you are satisfied with the operation of the keyboard, disable serial output again to improve performance.
+At this point the keyboard may work, or the threshold values may have to be adjusted.
+If keys act like they are being held down and your computer is now unusable when the keypad is plugged in, connect a wire from the 13 Pin (DISABLE_PIN) to ground (GND) to stop keypresses from being sent. If the keys do not work, uncomment the `#DEFINE SERIAL_OUTPUT` and reupload the sketch.
+Now, when you open the Arduino serial monitor (at 115200 baud) you should see the sensed capacitance for each key. Change the thresholds so that they are just above the largest values you see when not touching the keys, and reupload the sketch.
+Once you are satisfied with the operation of the keyboard, disable serial output again to improve performance.
